@@ -3,7 +3,7 @@
       <template v-slot:slot-menu>
         <div class="formScreen">
           <form class="formItens" action="">
-            <input id="bgInput" type="text" placeholder="Exp.: Ao ligar falar com Luiza" name="text">
+            <textarea name="text" id="bgInput" cols="16" rows="6" placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
 
             <div class="smlInputs">
               <p>Potencial do negócio</p>
