@@ -3,7 +3,7 @@
       <template v-slot:slot-menu>
         <div class="formScreen">
           <form class="formItens" action="">
-            <textarea name="text" id="bgInput" cols="16" rows="6" placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
+            <textarea name="text" id="bgInput" cols="18" rows="6" placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
 
             <div class="smlInputs">
               <p>Potencial do negócio</p>
@@ -12,7 +12,7 @@
               <p>Categorização</p>
               <div class="selectInput">
                 <select>
-                  <option selected disabled>Selecione a Categorização</option>
+                  <option selected disabled>Categorização</option>
                   <option>Crítico</option>
                   <option>Importante</option>
                   <option>Tranquilo</option>
@@ -23,6 +23,11 @@
               <input id="date" type="date"/>
             </div>
           </form>
+
+          <div class="footBtn">
+            <button id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
+            <button id="btnSave">Salvar</button>
+          </div>
         </div>
       </template>
     </MenuView>
