@@ -45,6 +45,31 @@ body {
                 font-size: 14px;
             }
 
+            .selectInput {
+
+                select {
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.05);
+                        cursor: pointer;
+                    }
+
+                    option {
+                        background-color: lighten($colorWhite, 5%);
+                    }
+                }
+            }
+
+            input[type="date"] {
+                cursor: text;
+            }
+
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+            }
+
             p {
                 margin-bottom: 10px;
                 color: darken($colorGray, 20%);
