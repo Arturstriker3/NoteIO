@@ -1,0 +1,66 @@
+
+@import '@/assets/scss/_main';
+
+body {
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .fa-paperclip {
+        color: $colorGray;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .textCenter {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 30px;
+
+        h3, p {
+            margin: -1px; // Remove todas as margens
+        }
+
+        h3 {
+            color: $colorBlue;
+            font-size: 25px;
+        }
+
+        p {
+            color: $colorGray;
+            font-size: 15px;
+        }
+    }
+
+    .bgBtn {
+        background-color: $colorBlue;
+        color: $colorWhite;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+        transition: background-color 0.3s ease;
+
+        i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            background-color: darken($colorBlue, 10%);
+            cursor: pointer;
+
+            i {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}

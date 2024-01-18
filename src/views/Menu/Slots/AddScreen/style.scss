@@ -1,0 +1,46 @@
+
+@import '@/assets/scss/_main';
+
+body {
+    overflow: hidden;
+}
+
+.formScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .formItens {
+        display: flex;
+        flex-direction: column;
+        
+
+        .smlInputs {
+            display: flex;
+            flex-direction: column;
+
+            input[type="text"],
+            input[type="date"],
+            select {
+                border-radius: 30px;
+                padding: 15px 35px;
+                margin-bottom: 10px;
+                background-color: lighten($colorWhite, 5%);
+                border: none;
+                font-family: 'Roboto', sans-serif;
+                color: darken($colorGray, 20%);
+                font-size: 14px;
+            }
+
+            
+
+            p {
+                margin-bottom: 10px;
+                color: darken($colorGray, 20%);
+                font-family: 'Raleway', sans-serif;
+            }
+        }
+    }
+}
