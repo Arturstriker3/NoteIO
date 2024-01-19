@@ -42,6 +42,7 @@
       h3 {
         font-weight: bold;
         margin-bottom: 0.5em; // Use unidades relativas, por exemplo, 0.5em
+        text-decoration: underline;
       }
   
       .dateInfo {
