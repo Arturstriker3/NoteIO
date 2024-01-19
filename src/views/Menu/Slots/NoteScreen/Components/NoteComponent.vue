@@ -51,21 +51,27 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding-top: - 10em;
       margin-left: 1em;
-      background-color: red;
+      
       border-radius: 10px;
   
       h3 {
         font-weight: bold;
         text-decoration: underline;
-        margin-bottom: 0.1em
+        margin-bottom: 0.1em;
+        font-family: 'Roboto', sans-serif;
+        color: $colorBlack;
+        font-size: 18px;
       }
   
       .dateInfo {
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-direction: row;
+        color: darken($colorGray, 20%);
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
   
         p {
           margin: 0.2em 0;
