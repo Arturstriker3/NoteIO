@@ -1,12 +1,14 @@
 <template>
     <div class="containerBox">
-      <i class="fa-solid fa-paperclip"></i>
-      <div class="textContainer">
-        <h3>Exp.: Ao ligar falar com Luíza</h3>
-        <div class="dateInfo">
-          <p id="noteDate">11/10/2023</p>
-          <span>-</span>
-          <p id="noteTime">13:37h</p>
+      <div class="leftBox">
+        <i class="fa-solid fa-paperclip"></i>
+        <div class="textContainer">
+          <h3>Exp.: Ao ligar falar com Luíza</h3>
+          <div class="dateInfo">
+            <p id="noteDate">11/10/2023</p>
+            <span>-</span>
+            <p id="noteTime">13:37h</p>
+          </div>
         </div>
       </div>
       <button id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
@@ -25,16 +27,22 @@
   .containerBox {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     background-color: lighten($colorWhite, 5%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 15px;
-    padding: 1em; // Use unidades relativas, por exemplo, 1em
-    max-width: 100%; // Adapta-se ao contêiner pai
+    padding: 1em;
+    max-width: 100%;
 
-    .fa-paperclip {
+    .leftBox {
+      
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .fa-paperclip {
         color: $colorGray;
         font-size: 20px;
     }
@@ -42,14 +50,14 @@
     .textContainer {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin-left: 1em; // Use unidades relativas, por exemplo, 1em
+      align-items: flex-start;
+      padding-top: - 10em;
+      margin-left: 1em;
       background-color: red;
       border-radius: 10px;
   
       h3 {
         font-weight: bold;
-        margin-bottom: 0.5em; // Use unidades relativas, por exemplo, 0.5em
         text-decoration: underline;
         margin-bottom: 0.1em
       }
@@ -70,6 +78,10 @@
         }
       }
     }
+
+    }
+
+    
 
     #btnTrash {
 

@@ -3,6 +3,8 @@
       <template v-slot:slot-menu>
 
         <NoteComponentVue/>
+        <NoteComponentVue/>
+        <NoteComponentVue/>
 
       </template>
     </MenuView>
