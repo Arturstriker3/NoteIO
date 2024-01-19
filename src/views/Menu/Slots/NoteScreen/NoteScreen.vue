@@ -2,14 +2,7 @@
     <MenuView>
       <template v-slot:slot-menu>
 
-        <div class="containerNotes">			
-          <a href="#">
-            <NoteComponentVue/>
-          </a>
-        </div>
-        <div class="containerMain">
-          <h1>second screen</h1>
-        </div>
+        <h2>Screen</h2>
 
       </template>
     </MenuView>
