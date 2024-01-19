@@ -2,7 +2,16 @@
     <MenuView>
       <template v-slot:slot-menu>
 
-        <NoteComponentVue/>
+        <div class="navigation">
+          <ul>
+            <li>
+              <a href="#">
+                <span class="icon"></span>
+                <span class="tittle">Home</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
       </template>
     </MenuView>
@@ -12,13 +21,11 @@
 
 <script>
 import MenuView from "../../MenuView.vue";
-import NoteComponentVue from './Components/NoteComponent.vue';
 
 export default {
   name: "NoteScreen",
   components: {
     MenuView,
-    NoteComponentVue,
   },
 };
 </script>
