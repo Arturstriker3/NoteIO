@@ -23,7 +23,20 @@
             <a href="#" class="menu-item">
               <NoteComponent/>
             </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
           </nav>
+          <button class="bgBtn">
+            <i class="fa-solid fa-plus"></i>
+            Criar anotação
+          </button>
         </aside>
 
         <main class="content">

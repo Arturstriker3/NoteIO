@@ -9,7 +9,7 @@
 
 body {
   background-color: lighten($colorWhite, 5%);
-  transition: background-color 1.0s ease; // Adicione a transição aqui
+  transition: background-color 1.0s ease;
 
   &.toggle-active {
     background-color: $colorBackground;
@@ -26,13 +26,13 @@ body {
   display: none;
   position: fixed;
   top: 4rem;
-  right: 2.25rem;
-  width: 35px;
-  height: 35px;
+  right: 2.1rem;
+  width: 40px;
+  height: 40px;
   border-radius: 99px;
   background-color: $colorBlack;
   cursor: pointer;
-  z-index: 2;  // Ajuste conforme necessário  
+  z-index: 2;
 
   .hamburger {
     position: relative;
@@ -87,6 +87,9 @@ body {
   padding: 2rem 1rem;
   background-color: $colorBackground;
   border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 
   h3 {
     color: $colorGray;
@@ -97,9 +100,11 @@ body {
 
   .menu {
     margin: 0 -1rem;
+    overflow-y: auto;
 
     .menu-item {
-      display: block;
+      display: flex;
+      align-items: center;
       padding: 1em;
       color: $colorWhite;
       text-decoration: none;
@@ -109,6 +114,31 @@ body {
       &.is-active {
         color: $colorGray;
         border-right: 5px solid $colorGray;
+      }
+    }
+  }
+
+  .bgBtn {
+    background-color: $colorBlue;
+    color: $colorWhite;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease;
+
+    i {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background-color: darken($colorBlue, 10%);
+      cursor: pointer;
+
+      i {
+        transform: rotate(90deg);
       }
     }
   }
@@ -136,6 +166,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
 
   .menu-toggle {
     display: block;
@@ -154,6 +187,7 @@ body {
     width: 100%;
     max-width: 320px;
     transition: 0.5s linear;
+    overflow: auto;
 
     &.is-active {
       left: 0;
