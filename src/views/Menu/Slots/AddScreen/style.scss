@@ -11,6 +11,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin-top: -30px;
 
     .formItens {
         display: flex;
@@ -25,12 +26,14 @@ body {
             color: darken($colorGray, 20%);
             resize: none;
             font-size: 14px;
+            margin-bottom: 10px;
         }
         
 
         .smlInputs {
             display: flex;
             flex-direction: column;
+            margin-bottom: 35px;
 
             input[type="text"],
             input[type="date"],
@@ -91,7 +94,7 @@ body {
     .footBtn {
         display: flex;
         flex-direction: row;
-        margin-top: 60px;
+        // margin-top: 60px;
         justify-content: center;
 
         #btnTrash {
