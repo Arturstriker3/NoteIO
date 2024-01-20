@@ -1,24 +1,29 @@
 <template>
   <MenuView>
     <template v-slot:slot-menu>
-
       <div class="app">
-        <div class="menu-toggle">
+        <div class="menu-toggle" ref="menuToggle" @click="handleToggleClickWrapper">
           <div class="hamburger">
             <span></span>
           </div>
         </div>
 
-        <aside class="sidebar">
-          <h3>Menu</h3>
-          
+        <aside class="sidebar" ref="sidebar">
+          <h3>Minhas Notas</h3>
           <nav class="menu">
-            <a href="#" class="menu-item is-active">Artigo 1</a>
-            <a href="#" class="menu-item">Artigo 2</a>
-            <a href="#" class="menu-item">Artigo 3</a>
-            <a href="#" class="menu-item">Artigo 4</a>
+            <a href="#" class="menu-item is-active">
+              <NoteComponent/>
+            </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
+            <a href="#" class="menu-item">
+              <NoteComponent/>
+            </a>
           </nav>
-
         </aside>
 
         <main class="content">
@@ -26,16 +31,14 @@
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
         </main>
       </div>
-
     </template>
   </MenuView>
 </template>
-  
-<style lang="scss" src="./style.scss"></style>
 
 <script>
 import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
+import { handleToggleClickWrapper } from "./Js/toggle";
 
 export default {
   name: "NoteScreen",
@@ -43,5 +46,13 @@ export default {
     MenuView,
     NoteComponent,
   },
+  methods: {
+    handleToggleClickWrapper() {
+      handleToggleClickWrapper(this);
+    },
+    // Outros métodos...
+  },
 };
 </script>
+
+<style lang="scss" src="./style.scss"></style>
