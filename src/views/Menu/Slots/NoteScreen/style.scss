@@ -25,11 +25,12 @@ body {
   display: none;
   position: fixed;
   right: 2.1rem;
+  top: 6.9rem;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: ($colorWhite, 5%);
-  transition: background-color 0.3s ease; // Adiciona transição para background-color
+  transition: ease-in 1.0s ease; // Adiciona transição para background-color
   cursor: pointer;
   z-index: 2;
 

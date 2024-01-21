@@ -61,7 +61,7 @@
         margin-bottom: 0.1em;
         font-family: 'Roboto', sans-serif;
         color: $colorBlack;
-        font-size: 18px;
+        font-size: 14px;
       }
   
       .dateInfo {
@@ -71,7 +71,7 @@
         flex-direction: row;
         color: darken($colorGray, 20%);
         font-family: 'Raleway', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
   
         p {
           margin: 0.2em 0;

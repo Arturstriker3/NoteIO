@@ -4,7 +4,7 @@
       <div class="app">
         <div class="menu-toggle" ref="menuToggle" @click="handleToggleClickWrapper">
           <div class="hamburger">
-            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-eye"></i>
           </div>
         </div>
 
