@@ -50,16 +50,16 @@
                   <h3>Conteúdo:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
               </div>
               <div class="contentInfo">
                 <div class="contentName">
                   <i class="fa-solid fa-dollar-sign"></i>
-                  <h3>Potencial do negócio:</h3>
+                  <h3>Potencial:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                  <p>R$ 1.000.000</p>
                 </div>
               </div>
               <div class="contentInfo">
@@ -68,7 +68,7 @@
                   <h3>Categorização:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                  <p>Importante</p>
                 </div>
               </div>
               <div class="contentInfo">
@@ -77,21 +77,21 @@
                   <h3>Lembrete:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                  <p>13/01/2024</p>
                 </div>
               </div>
 
               <div class="noteDate">
-                <i class="fa-solid fa-calendar-plus"></i>
-                <div class="dateInfo">
-                  <p>11/10/2023</p>
-                <span>-</span>
-                <p id="noteTime">13:37h</p>
+                <div class="dateAlign">
+                  <i class="fa-solid fa-calendar-plus"></i>
+                  <div class="dateInfo">
+                    <p>11/10/2023</p>
+                    <span>-</span>
+                    <p id="noteTime">13:37h</p>
+                  </div>
                 </div>
               </div>
-              
             </div>
-            
           </div>
           
         </main>

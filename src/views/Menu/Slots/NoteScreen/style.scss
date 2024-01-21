@@ -12,6 +12,7 @@ body {
 
   &.toggle-active {
     background-color: $colorBackground;
+    // overflow: hidden;
   }
 }
 
@@ -135,52 +136,54 @@ body {
   padding: 2rem;
 
   .cardBox {
-    background-color: red;
+    background-color: $colorBackground;
     display: flex;
-    flex-direction: column; /* Update to column for vertical centering */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80px;
+    padding: 5px 10px;
 
     h2 {
       color: $colorBlack;
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
     .contentInfo {
       display: flex;
-      flex-direction: column; /* Set to row for the <i> and <h3> */
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       justify-content: center;
 
       .contentName {
         display: flex;
-        flex-direction: row; /* Set to row for the <i> and <h3> */
         align-items: center;
-        justify-content: center;
 
         i {
-          color: $colorGray;
-          font-size: 2rem; /* Adjust the size as needed */
-          margin-right: 0.5rem; /* Add margin between <i> and <h3> */
+          font-size: 25px;
+          margin-right: 0.5rem;
+          color: $colorBlue;
         }
-  
+
         h3 {
-          color: $colorGray;
-          font-size: 1rem;
+          color: $colorBlack;
+          font-size: 20px;
           margin-right: 0.5rem;
         }
       }
-      
+
       .contentText {
         display: flex;
-        flex-direction: row; /* Set to row for the contentText */
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: center;
-  
+
         p {
           color: $colorGray;
-          font-size: 1rem;
+          font-size: 22px;
+          font-family: 'Raleway', sans-serif;
+          margin-top: 0;
         }
       }
     }
@@ -188,14 +191,38 @@ body {
     .noteDate {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
-
-      .dateInfo {
+      justify-content: flex-end;
+      align-items: flex-end;
+    
+      .dateAlign {
         display: flex;
         flex-direction: row;
         align-items: center;
-        align-content: center;
+
+        i {
+          color: $colorBlue;
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          margin: 0 0.4em;
+        }
+    
+        .dateInfo {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          p {
+            color: $colorBlack;
+            font-size: 14px;
+          }
+
+          span {
+            display: flex;
+            align-items: center;
+            margin: 0 0.2em;
+          }
+        }
       }
     }
   }
@@ -218,9 +245,7 @@ body {
     display: block;
   }
 
-  .content {
-    padding-top: 8rem;
-  }
+  
 
   .sidebar {
     margin-top: 80px;
@@ -246,11 +271,11 @@ body {
     .bgBtn {
       position: fixed;
       bottom: 0;
-      left: 50%; // Posiciona o botão no centro horizontal
-      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
-      width: 80%; // Ajuste a largura conforme necessário
-      margin: 20px auto; // Centraliza o botão horizontalmente
+      width: 80%;
+      margin: 20px auto;
 
       i {
         margin-right: 8px;
@@ -274,9 +299,7 @@ body {
     display: block;
   }
 
-  .content {
-    padding-top: 8rem;
-  }
+  
 
   .sidebar {
     margin-top: 80px;
@@ -301,11 +324,11 @@ body {
     .bgBtn {
       position: fixed;
       bottom: 0;
-      left: 50%; // Posiciona o botão no centro horizontal
-      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
-      width: 80%; // Ajuste a largura conforme necessário
-      margin: 20px auto; // Centraliza o botão horizontalmente
+      width: 80%;
+      margin: 20px auto;
 
       i {
         margin-right: 8px;
@@ -329,9 +352,7 @@ body {
     display: block;
   }
 
-  .content {
-    padding-top: 8rem;
-  }
+  
 
   .sidebar {
     margin-top: 80px;
@@ -355,11 +376,11 @@ body {
     .bgBtn {
       position: fixed;
       bottom: 0;
-      left: 50%; // Posiciona o botão no centro horizontal
-      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
-      width: 80%; // Ajuste a largura conforme necessário
-      margin: 20px auto; // Centraliza o botão horizontalmente
+      width: 80%;
+      margin: 20px auto;
 
       i {
         margin-right: 8px;
@@ -384,10 +405,6 @@ body {
     display: block;
   }
 
-  .content {
-    padding-top: 8rem;
-  }
-
   .sidebar {
     margin-top: 80px;
     position: fixed;
@@ -408,21 +425,21 @@ body {
     }
 
     .textContainer h3 {
-      font-size: 12px !important;  // Use !important para aumentar a especificidade
+      font-size: 12px !important;
     }
   
     .textContainer .dateInfo {
-      font-size: 10px !important;  // Use !important para aumentar a especificidade
+      font-size: 10px !important;
     }
 
     .bgBtn {
       position: fixed;
       bottom: 0;
-      left: 50%; // Posiciona o botão no centro horizontal
-      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
-      width: 80%; // Ajuste a largura conforme necessário
-      margin: 20px auto; // Centraliza o botão horizontalmente
+      width: 80%;
+      margin: 20px auto;
 
       i {
         margin-right: 8px;
@@ -436,6 +453,14 @@ body {
         i {
           transform: rotate(90deg);
         }
+      }
+    }
+
+    .content {
+      .cardBox {
+        max-height: 40vh; /* Reduzi a altura máxima para 40% da altura da tela */
+        overflow-y: auto;
+        display: block; /* Adicione esta linha para substituir flex */
       }
     }
   }
