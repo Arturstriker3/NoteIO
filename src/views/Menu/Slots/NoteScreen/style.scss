@@ -134,14 +134,70 @@ body {
   flex: 1 1 0;
   padding: 2rem;
 
-  h1 {
-    color: $colorBlack;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+  .cardBox {
+    background-color: red;
+    display: flex;
+    flex-direction: column; /* Update to column for vertical centering */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
 
-  p {
-    color: $colorBlue;
+    h2 {
+      color: $colorBlack;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contentInfo {
+      display: flex;
+      flex-direction: column; /* Set to row for the <i> and <h3> */
+      align-items: center;
+      justify-content: center;
+
+      .contentName {
+        display: flex;
+        flex-direction: row; /* Set to row for the <i> and <h3> */
+        align-items: center;
+        justify-content: center;
+
+        i {
+          color: $colorGray;
+          font-size: 2rem; /* Adjust the size as needed */
+          margin-right: 0.5rem; /* Add margin between <i> and <h3> */
+        }
+  
+        h3 {
+          color: $colorGray;
+          font-size: 1rem;
+          margin-right: 0.5rem;
+        }
+      }
+      
+      .contentText {
+        display: flex;
+        flex-direction: row; /* Set to row for the contentText */
+        align-items: center;
+        justify-content: center;
+  
+        p {
+          color: $colorGray;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .noteDate {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .dateInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+      }
+    }
   }
 }
 

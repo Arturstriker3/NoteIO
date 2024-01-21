@@ -41,8 +41,59 @@
         </aside>
 
         <main class="content">
-          <h1>Welcome, Human</h1>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+          <div class="cardBox">
+            <h2>Minha Nota</h2>
+            <div class="cardContent">
+              <div class="contentInfo">
+                <div class="contentName">
+                  <i class="fa-solid fa-file-lines"></i>
+                  <h3>Conteúdo:</h3>
+                </div>
+                <div class="contentText">
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                </div>
+              </div>
+              <div class="contentInfo">
+                <div class="contentName">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  <h3>Potencial do negócio:</h3>
+                </div>
+                <div class="contentText">
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                </div>
+              </div>
+              <div class="contentInfo">
+                <div class="contentName">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <h3>Categorização:</h3>
+                </div>
+                <div class="contentText">
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                </div>
+              </div>
+              <div class="contentInfo">
+                <div class="contentName">
+                  <i class="fa-solid fa-bell"></i>
+                  <h3>Lembrete:</h3>
+                </div>
+                <div class="contentText">
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, explicabo!</p>
+                </div>
+              </div>
+
+              <div class="noteDate">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <div class="dateInfo">
+                  <p>11/10/2023</p>
+                <span>-</span>
+                <p id="noteTime">13:37h</p>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
         </main>
       </div>
     </template>
