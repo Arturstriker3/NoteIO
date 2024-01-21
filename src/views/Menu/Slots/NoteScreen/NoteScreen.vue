@@ -53,8 +53,8 @@ import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
 
 
-import { handleToggleClickWrapper } from './Js/toggle';
-import { handleResize } from './Js/resizeHandler';
+import handleToggleClickWrapper from './Js/toggle';
+import handleResize from './Js/resizeHandler';
 
 export default {
   name: "NoteScreen",

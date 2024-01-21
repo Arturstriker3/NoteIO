@@ -1,29 +1,46 @@
 <template>
-    <div class="containerBox">
-      <div class="leftBox">
-        <i class="fa-solid fa-paperclip"></i>
-        <div class="textContainer">
-          <h3>Exp.: Ao ligar falar com Luíza</h3>
-          <div class="dateInfo">
-            <p id="noteDate">11/10/2023</p>
-            <span>-</span>
-            <p id="noteTime">13:37h</p>
-          </div>
+  <div class="containerBox">
+    <div class="leftBox">
+      <i class="fa-solid fa-paperclip"></i>
+      <div class="textContainer">
+        <h3>{{ truncatedText }}</h3>
+        <div class="dateInfo">
+          <p id="noteDate">11/10/2023</p>
+          <span>-</span>
+          <p id="noteTime">13:37h</p>
         </div>
       </div>
-      <button id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "NoteComponent",
-  };
-  </script>
-  
-  <style lang="scss" scoped>
-  @import '/src/assets/scss/_colors.scss';
-  
+    <button id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "NoteComponent",
+  data() {
+    return {
+      originalText: "Exp.: Ao ligar falar com Luíza bla teu cum falar aracaju sergipe brasil sao paulo laranjeiras luisa fabio",
+    };
+  },
+  computed: {
+    truncatedText() {
+      const maxLength = 30;
+      const content = this.originalText.trim();
+
+      if (content.length > maxLength) {
+        return content.slice(0, maxLength) + '...';
+      } else {
+        return content;
+      }
+    },
+  },
+};
+</script>
+    
+    <style lang="scss" scoped>
+    @import '/src/assets/scss/_colors.scss';
+    
   .containerBox {
     display: flex;
     flex-direction: row;
@@ -46,7 +63,7 @@
         color: $colorGray;
         font-size: 20px;
     }
-  
+
     .textContainer {
       display: flex;
       flex-direction: column;
@@ -54,7 +71,7 @@
       margin-left: 1em;
       
       border-radius: 10px;
-  
+
       h3 {
         font-weight: bold;
         text-decoration: underline;
@@ -63,7 +80,7 @@
         color: $colorBlack;
         font-size: 14px;
       }
-  
+
       .dateInfo {
         display: flex;
         justify-content: center;
@@ -72,11 +89,11 @@
         color: darken($colorGray, 20%);
         font-family: 'Raleway', sans-serif;
         font-size: 12px;
-  
+
         p {
           margin: 0.2em 0;
         }
-  
+
         span {
           display: flex;
           align-items: center;  
@@ -112,4 +129,4 @@
 
   }
   </style>
-  
+    

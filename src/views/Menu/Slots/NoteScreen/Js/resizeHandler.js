@@ -1,6 +1,5 @@
-
-
-export function handleResize(component) {
+// resizeHandler.js
+export default function(component) {
   const sidebar = component.$refs.sidebar;
   const body = document.body;
 
