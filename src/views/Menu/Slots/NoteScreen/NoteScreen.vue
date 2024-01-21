@@ -32,6 +32,7 @@
             <a href="#" class="menu-item">
               <NoteComponent/>
             </a>
+            
           </nav>
           <button class="bgBtn">
             <i class="fa-solid fa-plus"></i>

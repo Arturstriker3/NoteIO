@@ -70,6 +70,7 @@ body {
     margin: 0 -1rem;
     overflow-y: auto;
     direction: rtl;
+    margin-bottom: 2rem;
 
     &::-webkit-scrollbar {
       width: 5px;
@@ -146,11 +147,180 @@ body {
 
 @media (max-width: 1024px) {
   .sidebar {
-    max-width: 300px;
+    max-width: 350px;
+
+    .menu {
+      margin-bottom: 2rem;
+    }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .content {
+    padding-top: 8rem;
+  }
+
+  .sidebar {
+    margin-top: 80px;
+    position: fixed;
+    top: 0;
+    left: -700px;
+    height: 100vh;
+    width: 100%;
+    max-width: 700px;
+    transition: 0.5s linear;
+    overflow: auto;
+
+    &.is-active {
+      left: 0;
+    }
+
+    .menu {
+      margin-bottom: 10rem;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .bgBtn {
+      position: fixed;
+      bottom: 0;
+      left: 50%; // Posiciona o botão no centro horizontal
+      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      z-index: 3;
+      width: 80%; // Ajuste a largura conforme necessário
+      margin: 20px auto; // Centraliza o botão horizontalmente
+
+      i {
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+      }
+  
+      &:hover {
+        background-color: darken($colorBlue, 10%);
+        cursor: pointer;
+  
+        i {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .content {
+    padding-top: 8rem;
+  }
+
+  .sidebar {
+    margin-top: 80px;
+    position: fixed;
+    top: 0;
+    left: -425px;
+    height: 100vh;
+    width: 100%;
+    max-width: 425px;
+    transition: 0.5s linear;
+    overflow: auto;
+
+    &.is-active {
+      left: 0;
+    }
+
+    .menu {
+      margin-bottom: 10rem;
+      margin-left: 0.2rem;
+    }
+
+    .bgBtn {
+      position: fixed;
+      bottom: 0;
+      left: 50%; // Posiciona o botão no centro horizontal
+      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      z-index: 3;
+      width: 80%; // Ajuste a largura conforme necessário
+      margin: 20px auto; // Centraliza o botão horizontalmente
+
+      i {
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+      }
+  
+      &:hover {
+        background-color: darken($colorBlue, 10%);
+        cursor: pointer;
+  
+        i {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .content {
+    padding-top: 8rem;
+  }
+
+  .sidebar {
+    margin-top: 80px;
+    position: fixed;
+    top: 0;
+    left: -375px;
+    height: 100vh;
+    width: 100%;
+    max-width: 375px;
+    transition: 0.5s linear;
+    overflow: auto;
+
+    &.is-active {
+      left: 0;
+    }
+
+    .menu {
+      margin-bottom: 10rem;
+    }
+
+    .bgBtn {
+      position: fixed;
+      bottom: 0;
+      left: 50%; // Posiciona o botão no centro horizontal
+      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      z-index: 3;
+      width: 80%; // Ajuste a largura conforme necessário
+      margin: 20px auto; // Centraliza o botão horizontalmente
+
+      i {
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+      }
+  
+      &:hover {
+        background-color: darken($colorBlue, 10%);
+        cursor: pointer;
+  
+        i {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
 
   .menu-toggle {
     display: block;
@@ -173,6 +343,42 @@ body {
 
     &.is-active {
       left: 0;
+    }
+
+    .menu {
+      margin-bottom: 10rem;
+    }
+
+    .textContainer h3 {
+      font-size: 12px !important;  // Use !important para aumentar a especificidade
+    }
+  
+    .textContainer .dateInfo {
+      font-size: 10px !important;  // Use !important para aumentar a especificidade
+    }
+
+    .bgBtn {
+      position: fixed;
+      bottom: 0;
+      left: 50%; // Posiciona o botão no centro horizontal
+      transform: translateX(-50%); // Centraliza o botão horizontalmente
+      z-index: 3;
+      width: 80%; // Ajuste a largura conforme necessário
+      margin: 20px auto; // Centraliza o botão horizontalmente
+
+      i {
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+      }
+  
+      &:hover {
+        background-color: darken($colorBlue, 10%);
+        cursor: pointer;
+  
+        i {
+          transform: rotate(90deg);
+        }
+      }
     }
   }
 }
