@@ -30,14 +30,14 @@ body {
   height: 40px;
   border-radius: 50%;
   background-color: ($colorWhite, 5%);
-  transition: ease-in 1.0s ease; // Adiciona transição para background-color
+  transition: ease-in 1.0s ease;
   cursor: pointer;
   z-index: 2;
 
   .hamburger {
     display: flex;
-    align-items: center; // Centraliza verticalmente
-    justify-content: center; // Centraliza horizontalmente
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
 
@@ -144,6 +144,8 @@ body {
     color: $colorBlue;
   }
 }
+
+// Responsividade Telas Pequenas
 
 @media (max-width: 1024px) {
   .sidebar {
