@@ -1,6 +1,8 @@
+
 // Adicione uma nova função para lidar com a alteração de background-color
 export function handleBodyBackgroundColor() {
-  document.body.classList.toggle('toggle-active');
+  const body = document.body;
+  body.classList.toggle('toggle-active');
 }
 
 export function handleToggleClickWrapper(componentInstance) {

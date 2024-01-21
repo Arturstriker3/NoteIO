@@ -51,7 +51,9 @@
 <script>
 import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
+
 import { handleToggleClickWrapper } from "./Js/toggle";
+import { addResizeListener, removeResizeListener } from "./Js/resizeHandler";
 
 export default {
   name: "NoteScreen",
@@ -64,6 +66,12 @@ export default {
       handleToggleClickWrapper(this);
     },
     // Outros métodos...
+  },
+  mounted() {
+    addResizeListener();
+  },
+  beforeUnmount() {
+    removeResizeListener();
   },
 };
 </script>
