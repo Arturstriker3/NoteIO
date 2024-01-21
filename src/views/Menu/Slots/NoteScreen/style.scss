@@ -24,58 +24,24 @@ body {
 .menu-toggle {
   display: none;
   position: fixed;
-  top: 4rem;
   right: 2.1rem;
   width: 40px;
   height: 40px;
-  border-radius: 99px;
-  background-color: $colorBlack;
+  border-radius: 50%;
+  background-color: ($colorWhite, 5%);
+  transition: background-color 0.3s ease; // Adiciona transição para background-color
   cursor: pointer;
   z-index: 2;
 
   .hamburger {
-    position: relative;
-    top: calc(50% - 2px);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
+    display: flex;
+    align-items: center; // Centraliza verticalmente
+    justify-content: center; // Centraliza horizontalmente
+    width: 100%;
+    height: 100%;
 
-    > span,
-    > span::before,
-    > span::after {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 4px;
-      border-radius: 99px;
-      background-color: $colorWhite;
-      transition-duration: .25s;
-    }
-
-    > span::before {
-      content: '';
-      top: -8px;
-    }
-
-    > span::after {
-      content: '';
-      top: 8px;
-    }
-  }
-
-  &.is-active {
-    .hamburger > span {
-      transform: rotate(45deg);
-    }
-
-    .hamburger > span::before {
-      top: 0;
-      transform: rotate(0deg);
-    }
-
-    .hamburger > span::after {
-      top: 0;
-      transform: rotate(90deg);
+    i {
+      color: $colorGray;
     }
   }
 }

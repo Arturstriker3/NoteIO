@@ -4,7 +4,7 @@
       <div class="app">
         <div class="menu-toggle" ref="menuToggle" @click="handleToggleClickWrapper">
           <div class="hamburger">
-            <span></span>
+            <i class="fa-solid fa-arrow-right"></i>
           </div>
         </div>
 
@@ -52,8 +52,9 @@
 import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
 
-import { handleToggleClickWrapper } from "./Js/toggle";
-import { addResizeListener, removeResizeListener } from "./Js/resizeHandler";
+
+import { handleToggleClickWrapper } from './Js/toggle';
+import { handleResize } from './Js/resizeHandler';
 
 export default {
   name: "NoteScreen",
@@ -65,13 +66,18 @@ export default {
     handleToggleClickWrapper() {
       handleToggleClickWrapper(this);
     },
-    // Outros métodos...
+    disableSidebarOnResize() {
+      handleResize(this);
+    },
   },
+
   mounted() {
-    addResizeListener();
+    window.addEventListener('resize', this.disableSidebarOnResize);
   },
+
+  // Substitua beforeDestroy por beforeUnmount
   beforeUnmount() {
-    removeResizeListener();
+    window.removeEventListener('resize', this.disableSidebarOnResize);
   },
 };
 </script>

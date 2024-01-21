@@ -1,18 +1,22 @@
+// Salve este código em um arquivo, por exemplo, toggleHandler.js
 
-// Adicione uma nova função para lidar com a alteração de background-color
-export function handleBodyBackgroundColor() {
+export function handleToggleClickWrapper(component) {
+  const sidebar = component.$refs.sidebar;
   const body = document.body;
-  body.classList.toggle('toggle-active');
-}
+  const menuToggle = component.$refs.menuToggle; // Adicionei a referência ao elemento do botão de alternância
 
-export function handleToggleClickWrapper(componentInstance) {
-  const menuToggle = componentInstance.$refs.menuToggle;
-  const sidebar = componentInstance.$refs.sidebar;
-  handleToggleClick(menuToggle, sidebar);
-  handleBodyBackgroundColor();
-}
-
-export function handleToggleClick(menuToggle, sidebar) {
-  menuToggle.classList.toggle('is-active');
   sidebar.classList.toggle('is-active');
+  body.classList.toggle('toggle-active');
+
+  // Verifica se a classe is-active está presente no sidebar e atualiza o ícone
+  const isSidebarActive = sidebar.classList.contains('is-active');
+  const icon = menuToggle.querySelector('.hamburger i');
+
+  if (isSidebarActive) {
+    icon.classList.remove('fa-arrow-right');
+    icon.classList.add('fa-arrow-left');
+  } else {
+    icon.classList.remove('fa-arrow-left');
+    icon.classList.add('fa-arrow-right');
+  }
 }
