@@ -23,3 +23,5 @@ export async function loadNotesFromIndexDB(componentInstance) {
     console.error('Erro ao carregar notas do IndexDB:', error);
   }
 }
+
+export default loadNotesFromIndexDB;

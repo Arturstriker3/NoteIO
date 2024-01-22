@@ -2,7 +2,7 @@
   <MenuView>
     <template v-slot:slot-menu>
       <div class="formScreen">
-        <form class="formItens" @submit.prevent="saveNote">
+        <form class="formItens" @submit.prevent="onSaveNote">
           <textarea v-model="note.text" id="bgInput" name="text" cols="18" rows="5" placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
 
           <div class="smlInputs">
@@ -37,11 +37,10 @@
 
 <script>
 
-import Dexie from 'dexie';
-import clone from 'clone';
-
 import MenuView from "../../MenuView.vue";
 
+import initDatabase from "./Js/initDatabase.js";
+import { saveNote } from "./Js/noteSave"
 export default {
   name: "AddScreen",
   data() {
@@ -57,77 +56,12 @@ export default {
     };
   },
   created() {
-    // Inicialize o banco de dados Dexie no método created
-    this.initDatabase();
+    initDatabase();
   },
   methods: {
-
-    async initDatabase() {
-      // Inicialize o Dexie para acessar o IndexDB
-      const db = new Dexie('LocalNotes');
-
-      // Defina a estrutura da tabela (se ainda não estiver definida)
-      db.version(1).stores({
-        notes: '++id, text, potential, category, reminder, timestamp',
-      });
-
-      console.log('Banco de dados Dexie inicializado.');
+    onSaveNote() {
+      saveNote(this);
     },
-
-    async saveNote() {
-      // Gerar um ID único e um timestamp antes de salvar a nota
-      this.note.id = await this.generateUniqueId();
-      this.note.timestamp = new Date().toISOString();
-
-      // Implementar a lógica para salvar a nota no IndexDB
-      await this.saveNoteToIndexDB(this.note);
-
-      // Limpar o formulário após salvar
-      this.resetForm();
-    },
-
-    async generateUniqueId() {
-      // Inicialize o Dexie para acessar o IndexDB
-      const db = new Dexie('LocalNotes');
-
-      // Defina a estrutura da tabela (se ainda não estiver definida)
-      db.version(1).stores({
-        notes: '++id, text, potential, category, reminder, timestamp',
-      });
-
-      // Consulte o último ID no IndexDB
-      const lastNote = await db.notes.orderBy('id').last();
-
-      // Incrementar o ID
-      const newId = lastNote ? lastNote.id + 1 : 0;
-
-      return newId;
-    },
-
-    async saveNoteToIndexDB(note) {
-    try {
-      // Clone profundo da nota para evitar o DataCloneError
-      const clonedNote = clone(note);
-
-      // Inicialize o Dexie para acessar o IndexDB
-      const db = new Dexie('LocalNotes');
-
-      // Defina a estrutura da tabela (se ainda não estiver definida)
-      db.version(1).stores({
-        notes: '++id, text, potential, category, reminder, timestamp',
-      });
-
-      // Adicione a nota clonada à tabela
-      await db.notes.add(clonedNote);
-      
-      // Redirecione para a rota '/notes'
-      this.$router.push('/notes');
-
-      console.log('Nota salva no IndexDB:', clonedNote);
-    } catch (error) {
-      console.error('Erro ao salvar a nota no IndexDB:', error);
-    }
-  },
 
     resetForm() {
       this.note = {

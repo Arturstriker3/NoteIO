@@ -40,8 +40,8 @@
         <aside class="sidebar" ref="sidebar">
           <h3>Minhas Notas</h3>
           <nav class="menu">
-            <a class="menu-item " v-for="(note, id) in notes" :key="id">
-              <NoteComponent :note="note" @deleteNote="deleteNote" />
+            <a class="menu-item" v-for="(note, id) in notes" :key="id" @click="showNoteContentWrapper(note)" :class="{ 'is-active': activeNote && activeNote.id === note.id }">
+                <NoteComponent :note="note" @deleteNote="deleteNote" />
             </a>
           </nav>
             <button @click="$router.push('/add')" class="bgBtn">
@@ -51,7 +51,7 @@
         </aside>
 
         <main class="content">
-          <div class="cardBox">
+          <div v-if="activeNote" class="cardBox">
             <h2>Minha Nota</h2>
             <div class="cardContent">
               <div class="contentInfo">
@@ -60,7 +60,7 @@
                   <h3>Conteúdo:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <p>{{ activeNote.text }}</p>
                 </div>
               </div>
               <div class="contentInfo">
@@ -69,7 +69,7 @@
                   <h3>Potencial:</h3>
                 </div>
                 <div class="contentText">
-                  <p>R$ 1.000.000</p>
+                  <p>R$ {{ activeNote.potential }}</p>
                 </div>
               </div>
               <div class="contentInfo">
@@ -78,7 +78,7 @@
                   <h3>Categorização:</h3>
                 </div>
                 <div class="contentText">
-                  <p>Importante</p>
+                  <p>{{ activeNote.category }}</p>
                 </div>
               </div>
               <div class="contentInfo">
@@ -87,7 +87,7 @@
                   <h3>Lembrete:</h3>
                 </div>
                 <div class="contentText">
-                  <p>13/01/2024</p>
+                  <p>{{ formattedReminderDate }}</p>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@
                 <div class="dateAlign">
                   <i class="fa-solid fa-calendar-plus"></i>
                   <div class="dateInfo">
-                    <p>11/10/2023</p>
+                    <p>{{ formattedCreationDate }}</p>
                   </div>
                 </div>
               </div>
@@ -115,6 +115,8 @@ import handleToggleClickWrapper from './Js/toggle';
 import handleResize from './Js/resizeHandler';
 import { loadNotesFromIndexDB } from './Js/noteLoad';
 import { deleteNoteHelper, handleDeleteHelper } from './Js/noteDelete';
+import { formattedCreationDate, formattedReminderDate } from './Js/noteDates';
+import { showNoteContentFunction } from './Js/noteShow';
 
 export default {
   name: "NoteScreen",
@@ -126,6 +128,7 @@ export default {
     return {
       showModal: false,
       notes: {},
+      activeNote: null,
       noteToDelete: null,
     };
   },
@@ -142,6 +145,14 @@ export default {
     closeModal() {
       this.showModal = false;
     },
+
+    showNoteContentWrapper(note) {
+      showNoteContentFunction(this, note);
+    },
+
+    clearActiveNote() {
+      this.activeNote = null;
+    },
     
     async loadNotesFromIndexDB() {
       await loadNotesFromIndexDB(this);
@@ -154,7 +165,16 @@ export default {
     async handleDelete() {
       await handleDeleteHelper(this);
     },
-},
+  },
+
+  computed: {
+    formattedCreationDate() {
+      return formattedCreationDate(this.activeNote);
+    },
+    formattedReminderDate() {
+      return formattedReminderDate(this.activeNote);
+    },
+  },
 
   mounted() {
     window.addEventListener('resize', this.disableSidebarOnResize);
@@ -168,5 +188,3 @@ export default {
 </script>
 
 <style lang="scss" src="./style.scss"></style>
-
-./Js/noteLoad
