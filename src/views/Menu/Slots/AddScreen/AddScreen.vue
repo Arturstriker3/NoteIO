@@ -76,8 +76,12 @@ export default {
       // Adicione uma vírgula para representar os centavos
       value = value.slice(0, -2) + ',' + value.slice(-2);
 
+      // Adicione pontos como separadores de milhares
+      const parts = value.split(',');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
       // Atualize o valor no modelo
-      this.note.potential = `R$ ${value}`;
+      this.note.potential = `R$ ${parts.join(',')}`;
     },
 
     resetForm() {
