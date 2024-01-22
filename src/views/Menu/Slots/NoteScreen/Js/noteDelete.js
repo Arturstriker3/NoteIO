@@ -14,7 +14,7 @@ export const deleteNoteHelper = async (componentInstance, { id, timestamp }) => 
   }
 };
 
-export const handleDeleteHelper = async (componentInstance) => {
+export const handleDeleteHelper = async (componentInstance, clearActiveNote) => {
   try {
     // Excluir a nota do IndexedDB
     const db = new Dexie('LocalNotes');
@@ -31,6 +31,9 @@ export const handleDeleteHelper = async (componentInstance) => {
 
     // Fechar o modal após a exclusão
     componentInstance.closeModal();
+    
+    // Fecha nota ativida
+    clearActiveNote();
 
     // Atualizar o estado com as notas após a exclusão
     await loadNotesFromIndexDB(componentInstance);

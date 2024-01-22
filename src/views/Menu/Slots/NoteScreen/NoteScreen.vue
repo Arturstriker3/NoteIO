@@ -163,7 +163,7 @@ export default {
     },
 
     async handleDelete() {
-      await handleDeleteHelper(this);
+      await handleDeleteHelper(this, this.clearActiveNote);
     },
   },
 

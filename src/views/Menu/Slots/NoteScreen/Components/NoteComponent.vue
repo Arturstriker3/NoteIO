@@ -31,14 +31,16 @@ export default {
   },
   computed: {
     truncatedText() {
-      const maxLength = 30;
-      const content = this.note.text.trim();
+    const maxLength = 25;
+    const content = this.note.text.trim();
 
-      if (content.length > maxLength) {
-        return content.slice(0, maxLength) + '...';
-      } else {
-        return content;
-      }
+    // Use String.padEnd to ensure a consistent length
+    const paddedText = content.padEnd(maxLength, ' ');
+
+    // Check if truncation is needed and add '...' accordingly
+    return content.length > maxLength
+      ? paddedText.slice(0, maxLength - 3) + '...'
+      : paddedText;
     },
     formattedDate() {
       // Implemente a lógica para formatar a data da nota
