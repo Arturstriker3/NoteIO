@@ -8,11 +8,10 @@
 body {
   background-color: lighten($colorWhite, 5%);
   transition: background-color 1.0s ease;
-  overflow: hidden;
 
   &.toggle-active {
     background-color: $colorBackground;
-    // overflow: hidden;
+    overflow: hidden;
   }
 }
 
@@ -191,8 +190,9 @@ body {
     .noteDate {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
     
       .dateAlign {
         display: flex;
@@ -215,12 +215,6 @@ body {
           p {
             color: $colorBlack;
             font-size: 14px;
-          }
-
-          span {
-            display: flex;
-            align-items: center;
-            margin: 0 0.2em;
           }
         }
       }
@@ -458,9 +452,7 @@ body {
 
     .content {
       .cardBox {
-        max-height: 40vh; /* Reduzi a altura máxima para 40% da altura da tela */
-        overflow-y: auto;
-        display: block; /* Adicione esta linha para substituir flex */
+        margin: auto;
       }
     }
   }

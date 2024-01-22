@@ -86,8 +86,6 @@
                   <i class="fa-solid fa-calendar-plus"></i>
                   <div class="dateInfo">
                     <p>11/10/2023</p>
-                    <span>-</span>
-                    <p id="noteTime">13:37h</p>
                   </div>
                 </div>
               </div>
