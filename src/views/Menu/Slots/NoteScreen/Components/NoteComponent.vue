@@ -21,17 +21,9 @@
 export default {
   name: "NoteComponent",
   props: {
-    openModalFunc: Function,
     note: Object,
   },
   methods: {
-    triggerOpenModal() {
-      if (typeof this.openModalFunc === 'function') {
-        this.openModalFunc();  // Chama a função do componente pai para abrir o modal
-      } else {
-        console.error('openModalFunc não é uma função válida.');
-      }
-    },
     triggerDelete(id, timestamp) {
       // Emitir evento para deletar a nota
       this.$emit('deleteNote', { id, timestamp });

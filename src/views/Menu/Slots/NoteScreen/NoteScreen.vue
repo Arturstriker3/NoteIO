@@ -3,7 +3,33 @@
     <template v-slot:slot-menu>
       <div class="app">
 
-        <ModalComponent :showModal="modalVisible" @close="closeModal"/>
+        <!-- modal -->
+
+        <div id="app">
+          <transition name="modal">
+            <div v-if="showModal" class="modal-mask">
+              <div class="modal-wrapper">
+                <div class="modal-container">
+                  <div class="modal-header">
+                    Deseja excluir esta anotação ?
+                  </div>
+                  <div class="modal-line"></div>
+                  <div class="modal-body">
+                    Você está prestes a deletar uma anotação e esta ação não poderá ser desfeita. Tem certeza que deseja excluí-la?
+                  </div>
+                  <div class="modal-footer">
+                    <button class="modal-default-button" id="modal-delete-btn" @click="handleDelete">
+                      Excluir
+                    </button>
+                    <button class="modal-default-button" id="modal-cancel-btn" @click="closeModal">
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
 
         <div class="menu-toggle" ref="menuToggle" @click="handleToggleClickWrapper">
           <div class="hamburger">
@@ -14,8 +40,8 @@
         <aside class="sidebar" ref="sidebar">
           <h3>Minhas Notas</h3>
           <nav class="menu">
-            <a class="menu-item is-active" v-for="(note, id) in notes" :key="id">
-              <NoteComponent :note="note" :openModalFunc="openModal" @deleteNote="deleteNote" />
+            <a class="menu-item " v-for="(note, id) in notes" :key="id">
+              <NoteComponent :note="note" @deleteNote="deleteNote" />
             </a>
           </nav>
             <button @click="$router.push('/add')" class="bgBtn">
@@ -84,7 +110,6 @@
 <script>
 import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
-import ModalComponent from './Components/ModalComponent.vue';
 
 import handleToggleClickWrapper from './Js/toggle';
 import handleResize from './Js/resizeHandler';
@@ -96,12 +121,12 @@ export default {
   components: {
     MenuView,
     NoteComponent,
-    ModalComponent,
   },
   data() {
     return {
-      modalVisible: false,
+      showModal: false,
       notes: {}, // Objeto para armazenar as notas do IndexDB
+      noteToDelete: null, // Armazenar temporariamente a nota a ser excluída
     };
   },
   methods: {
@@ -112,10 +137,10 @@ export default {
       handleResize(this);
     },
     openModal() {
-      this.modalVisible = true;
+      this.showModal = true;
     },
     closeModal() {
-      this.modalVisible = false;
+      this.showModal = false;
     },
     
     async loadNotesFromIndexDB() {
@@ -143,21 +168,41 @@ export default {
 
     async deleteNote({ id, timestamp }) {
       try {
-        const db = new Dexie('LocalNotes');
-        db.version(1).stores({
-          notes: '++id, text, potential, category, reminder, timestamp',
-        });
+        // Armazenar temporariamente os dados da nota
+        this.noteToDelete = { id, timestamp };
 
-        // Exclua a nota do IndexedDB
-        await db.notes.where({ id, timestamp }).delete();
-
-        // Recarregue as notas após a exclusão
-        this.loadNotesFromIndexDB();
+        // Abrir o modal ou qualquer outra lógica de confirmação desejada
+        this.openModal();
       } catch (error) {
-        console.error('Erro ao excluir a nota:', error);
+        console.error('Erro ao preparar a exclusão da nota:', error);
       }
     },
+
+    async handleDelete() {
+    try {
+      // Excluir a nota do IndexedDB
+      const db = new Dexie('LocalNotes');
+      db.version(1).stores({
+        notes: '++id, text, potential, category, reminder, timestamp',
+      });
+
+      // Utilizar os dados armazenados temporariamente
+      const { id, timestamp } = this.noteToDelete;
+      await db.notes.where({ id, timestamp }).delete();
+
+      // Limpar os dados temporários
+      this.noteToDelete = null;
+
+      // Fechar o modal após a exclusão
+      this.closeModal();
+
+      // Atualizar o estado com as notas após a exclusão
+      await this.loadNotesFromIndexDB();
+    } catch (error) {
+      console.error('Erro ao excluir a nota:', error);
+    }
   },
+},
 
   mounted() {
     window.addEventListener('resize', this.disableSidebarOnResize);
@@ -171,3 +216,4 @@ export default {
 </script>
 
 <style lang="scss" src="./style.scss"></style>
+
