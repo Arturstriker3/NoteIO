@@ -2,6 +2,9 @@
   <MenuView>
     <template v-slot:slot-menu>
       <div class="app">
+
+        <ModalComponent :showModal="modalVisible" @close="closeModal"/>
+
         <div class="menu-toggle" ref="menuToggle" @click="handleToggleClickWrapper">
           <div class="hamburger">
             <i class="fa-solid fa-eye"></i>
@@ -12,27 +15,8 @@
           <h3>Minhas Notas</h3>
           <nav class="menu">
             <a href="#" class="menu-item is-active">
-              <NoteComponent/>
+              <NoteComponent :openModalFunc="openModal" />
             </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            <a href="#" class="menu-item">
-              <NoteComponent/>
-            </a>
-            
           </nav>
           <button class="bgBtn">
             <i class="fa-solid fa-plus"></i>
@@ -91,7 +75,6 @@
               </div>
             </div>
           </div>
-          
         </main>
       </div>
     </template>
@@ -101,7 +84,7 @@
 <script>
 import MenuView from "../../MenuView.vue";
 import NoteComponent from './Components/NoteComponent.vue';
-
+import ModalComponent from './Components/ModalComponent.vue';
 
 import handleToggleClickWrapper from './Js/toggle';
 import handleResize from './Js/resizeHandler';
@@ -111,6 +94,12 @@ export default {
   components: {
     MenuView,
     NoteComponent,
+    ModalComponent,
+  },
+  data() {
+    return {
+      modalVisible: false,
+    };
   },
   methods: {
     handleToggleClickWrapper() {
@@ -119,13 +108,18 @@ export default {
     disableSidebarOnResize() {
       handleResize(this);
     },
+    openModal() {
+      this.modalVisible = true;
+    },
+    closeModal() {
+      this.modalVisible = false;
+    },
   },
 
   mounted() {
     window.addEventListener('resize', this.disableSidebarOnResize);
   },
 
-  // Substitua beforeDestroy por beforeUnmount
   beforeUnmount() {
     window.removeEventListener('resize', this.disableSidebarOnResize);
   },

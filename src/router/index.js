@@ -7,6 +7,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/Menu/Slots/MainScreen/MainScreen.vue')
+      // component: () => import('../views/Menu/Slots/NoteScreen/Components/ModalComponent.vue')
     },
     {
       path: '/add',

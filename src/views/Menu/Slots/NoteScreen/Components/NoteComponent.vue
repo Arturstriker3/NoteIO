@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <button id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
+    <button @click="triggerOpenModal" id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
   </div>
 </template>
 
@@ -22,6 +22,18 @@ export default {
     return {
       originalText: "Exp.: Ao ligar falar com Luíza bla teu cum falar aracaju sergipe brasil sao paulo laranjeiras luisa fabio",
     };
+  },
+  props: {
+    openModalFunc: Function,
+  },
+  methods: {
+    triggerOpenModal() {
+      if (typeof this.openModalFunc === 'function') {
+        this.openModalFunc();  // Chama a função do componente pai para abrir o modal
+      } else {
+        console.error('openModalFunc não é uma função válida.');
+      }
+    },
   },
   computed: {
     truncatedText() {
