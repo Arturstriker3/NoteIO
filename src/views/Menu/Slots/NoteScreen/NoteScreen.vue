@@ -14,14 +14,8 @@
         <aside class="sidebar" ref="sidebar">
           <h3>Minhas Notas</h3>
           <nav class="menu">
-            <a class="menu-item is-active">
-              <NoteComponent
-              v-for="(note, id) in notes"
-              :key="id"
-              :note="note"
-              :openModalFunc="openModal"
-              @deleteNote="deleteNote"
-            />
+            <a class="menu-item is-active" v-for="(note, id) in notes" :key="id">
+              <NoteComponent :note="note" :openModalFunc="openModal" @deleteNote="deleteNote" />
             </a>
           </nav>
           <button class="bgBtn">

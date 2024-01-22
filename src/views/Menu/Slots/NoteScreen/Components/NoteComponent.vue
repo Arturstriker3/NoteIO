@@ -5,9 +5,9 @@
       <div class="textContainer">
         <h3>{{ truncatedText }}</h3>
         <div class="dateInfo">
-          <p id="noteDate">11/10/2023</p>
+          <p id="noteDate">{{ formattedDate }}</p>
           <span>-</span>
-          <p id="noteTime">13:37h</p>
+          <p id="noteTime">{{ formattedTime }}</p>
         </div>
       </div>
     </div>
@@ -20,11 +20,6 @@
 <script>
 export default {
   name: "NoteComponent",
-  data() {
-    return {
-      originalText: "Exp.: Ao ligar falar com Luíza bla teu cum falar aracaju sergipe brasil sao paulo laranjeiras luisa fabio",
-    };
-  },
   props: {
     openModalFunc: Function,
     note: Object,
@@ -45,13 +40,24 @@ export default {
   computed: {
     truncatedText() {
       const maxLength = 30;
-      const content = this.originalText.trim();
+      const content = this.note.text.trim();
 
       if (content.length > maxLength) {
         return content.slice(0, maxLength) + '...';
       } else {
         return content;
       }
+    },
+    formattedDate() {
+      // Implemente a lógica para formatar a data da nota
+      // Exemplo: você pode usar o objeto Date para formatar a data conforme necessário
+      return this.note.timestamp ? new Date(this.note.timestamp).toLocaleDateString() : '';
+    },
+    formattedTime() {
+      // Formatar a hora sem incluir os segundos
+      return this.note.timestamp
+        ? new Date(this.note.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        : '';
     },
   },
 };
