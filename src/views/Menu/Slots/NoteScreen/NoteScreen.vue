@@ -18,10 +18,10 @@
               <NoteComponent :note="note" :openModalFunc="openModal" @deleteNote="deleteNote" />
             </a>
           </nav>
-          <button class="bgBtn">
-            <i class="fa-solid fa-plus"></i>
-            Criar anotação
-          </button>
+            <button @click="$router.push('/add')" class="bgBtn">
+              <i class="fa-solid fa-plus"></i>
+              Criar anotação
+            </button>
         </aside>
 
         <main class="content">

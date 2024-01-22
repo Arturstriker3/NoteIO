@@ -119,6 +119,9 @@ export default {
 
       // Adicione a nota clonada à tabela
       await db.notes.add(clonedNote);
+      
+      // Redirecione para a rota '/notes'
+      this.$router.push('/notes');
 
       console.log('Nota salva no IndexDB:', clonedNote);
     } catch (error) {
