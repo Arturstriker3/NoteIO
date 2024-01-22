@@ -8,7 +8,7 @@
             <h3>Anotações</h3>
             <p>By Speedio</p>
           </div>
-          <button class="bgBtn">
+          <button @click="$router.push('/add')" class="bgBtn">
             <i class="fa-solid fa-plus"></i>
             Criar anotação
           </button>

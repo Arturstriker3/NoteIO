@@ -113,8 +113,8 @@ import NoteComponent from './Components/NoteComponent.vue';
 
 import handleToggleClickWrapper from './Js/toggle';
 import handleResize from './Js/resizeHandler';
-
-import Dexie from 'dexie';
+import { loadNotesFromIndexDB } from './Js/noteLoad';
+import { deleteNoteHelper, handleDeleteHelper } from './Js/noteDelete';
 
 export default {
   name: "NoteScreen",
@@ -125,8 +125,8 @@ export default {
   data() {
     return {
       showModal: false,
-      notes: {}, // Objeto para armazenar as notas do IndexDB
-      noteToDelete: null, // Armazenar temporariamente a nota a ser excluída
+      notes: {},
+      noteToDelete: null,
     };
   },
   methods: {
@@ -144,69 +144,21 @@ export default {
     },
     
     async loadNotesFromIndexDB() {
-      try {
-        const db = new Dexie('LocalNotes');
-        db.version(1).stores({
-          notes: '++id, text, potential, category, reminder, timestamp',
-        });
-
-        // Buscar todas as notas no IndexDB
-        const allNotes = await db.notes.toArray();
-
-        // Converter a array de notas em um objeto com IDs como chaves
-        const notesObject = {};
-        allNotes.forEach(note => {
-          notesObject[note.id] = note;
-        });
-
-        // Armazenar as notas no data
-        this.notes = notesObject;
-      } catch (error) {
-        console.error('Erro ao carregar notas do IndexDB:', error);
-      }
+      await loadNotesFromIndexDB(this);
     },
 
     async deleteNote({ id, timestamp }) {
-      try {
-        // Armazenar temporariamente os dados da nota
-        this.noteToDelete = { id, timestamp };
-
-        // Abrir o modal ou qualquer outra lógica de confirmação desejada
-        this.openModal();
-      } catch (error) {
-        console.error('Erro ao preparar a exclusão da nota:', error);
-      }
+      await deleteNoteHelper(this, { id, timestamp });
     },
 
     async handleDelete() {
-    try {
-      // Excluir a nota do IndexedDB
-      const db = new Dexie('LocalNotes');
-      db.version(1).stores({
-        notes: '++id, text, potential, category, reminder, timestamp',
-      });
-
-      // Utilizar os dados armazenados temporariamente
-      const { id, timestamp } = this.noteToDelete;
-      await db.notes.where({ id, timestamp }).delete();
-
-      // Limpar os dados temporários
-      this.noteToDelete = null;
-
-      // Fechar o modal após a exclusão
-      this.closeModal();
-
-      // Atualizar o estado com as notas após a exclusão
-      await this.loadNotesFromIndexDB();
-    } catch (error) {
-      console.error('Erro ao excluir a nota:', error);
-    }
-  },
+      await handleDeleteHelper(this);
+    },
 },
 
   mounted() {
     window.addEventListener('resize', this.disableSidebarOnResize);
-    this.loadNotesFromIndexDB(); // Chamar a função ao montar o componente
+    this.loadNotesFromIndexDB();
   },
 
   beforeUnmount() {
@@ -217,3 +169,4 @@ export default {
 
 <style lang="scss" src="./style.scss"></style>
 
+./Js/noteLoad
