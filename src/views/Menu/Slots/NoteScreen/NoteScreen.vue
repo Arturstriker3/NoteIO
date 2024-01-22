@@ -14,8 +14,14 @@
         <aside class="sidebar" ref="sidebar">
           <h3>Minhas Notas</h3>
           <nav class="menu">
-            <a href="#" class="menu-item is-active">
-              <NoteComponent  :openModalFunc="openModal" />
+            <a class="menu-item is-active">
+              <NoteComponent
+              v-for="(note, id) in notes"
+              :key="id"
+              :note="note"
+              :openModalFunc="openModal"
+              @deleteNote="deleteNote"
+            />
             </a>
           </nav>
           <button class="bgBtn">
@@ -138,6 +144,23 @@ export default {
         this.notes = notesObject;
       } catch (error) {
         console.error('Erro ao carregar notas do IndexDB:', error);
+      }
+    },
+
+    async deleteNote({ id, timestamp }) {
+      try {
+        const db = new Dexie('LocalNotes');
+        db.version(1).stores({
+          notes: '++id, text, potential, category, reminder, timestamp',
+        });
+
+        // Exclua a nota do IndexedDB
+        await db.notes.where({ id, timestamp }).delete();
+
+        // Recarregue as notas após a exclusão
+        this.loadNotesFromIndexDB();
+      } catch (error) {
+        console.error('Erro ao excluir a nota:', error);
       }
     },
   },

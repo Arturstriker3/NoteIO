@@ -1,5 +1,5 @@
 <template>
-  <div class="containerBox">
+  <div class="containerBox" v-if="note">
     <div class="leftBox">
       <i class="fa-solid fa-paperclip"></i>
       <div class="textContainer">
@@ -11,7 +11,9 @@
         </div>
       </div>
     </div>
-    <button @click="triggerOpenModal" id="btnTrash"><i class="fa-regular fa-trash-can"></i></button>
+    <button @click="triggerDelete(note.id, note.timestamp)" id="btnTrash">
+      <i class="fa-regular fa-trash-can"></i>
+    </button>
   </div>
 </template>
 
@@ -25,6 +27,7 @@ export default {
   },
   props: {
     openModalFunc: Function,
+    note: Object,
   },
   methods: {
     triggerOpenModal() {
@@ -33,6 +36,10 @@ export default {
       } else {
         console.error('openModalFunc não é uma função válida.');
       }
+    },
+    triggerDelete(id, timestamp) {
+      // Emitir evento para deletar a nota
+      this.$emit('deleteNote', { id, timestamp });
     },
   },
   computed: {
@@ -64,7 +71,7 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 2em;
-  max-width: 100%;
+  width: 100%;
   height: 70px;
 
   // Left box
