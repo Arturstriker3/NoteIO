@@ -15,7 +15,7 @@
           <h3>Minhas Notas</h3>
           <nav class="menu">
             <a href="#" class="menu-item is-active">
-              <NoteComponent :openModalFunc="openModal" />
+              <NoteComponent  :openModalFunc="openModal" />
             </a>
           </nav>
           <button class="bgBtn">
@@ -89,6 +89,8 @@ import ModalComponent from './Components/ModalComponent.vue';
 import handleToggleClickWrapper from './Js/toggle';
 import handleResize from './Js/resizeHandler';
 
+import Dexie from 'dexie';
+
 export default {
   name: "NoteScreen",
   components: {
@@ -99,6 +101,7 @@ export default {
   data() {
     return {
       modalVisible: false,
+      notes: {}, // Objeto para armazenar as notas do IndexDB
     };
   },
   methods: {
@@ -114,10 +117,34 @@ export default {
     closeModal() {
       this.modalVisible = false;
     },
+    
+    async loadNotesFromIndexDB() {
+      try {
+        const db = new Dexie('LocalNotes');
+        db.version(1).stores({
+          notes: '++id, text, potential, category, reminder, timestamp',
+        });
+
+        // Buscar todas as notas no IndexDB
+        const allNotes = await db.notes.toArray();
+
+        // Converter a array de notas em um objeto com IDs como chaves
+        const notesObject = {};
+        allNotes.forEach(note => {
+          notesObject[note.id] = note;
+        });
+
+        // Armazenar as notas no data
+        this.notes = notesObject;
+      } catch (error) {
+        console.error('Erro ao carregar notas do IndexDB:', error);
+      }
+    },
   },
 
   mounted() {
     window.addEventListener('resize', this.disableSidebarOnResize);
+    this.loadNotesFromIndexDB(); // Chamar a função ao montar o componente
   },
 
   beforeUnmount() {
