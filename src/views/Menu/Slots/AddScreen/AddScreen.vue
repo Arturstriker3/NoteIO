@@ -7,7 +7,7 @@
 
           <div class="smlInputs">
             <p>Potencial do negócio</p>
-            <input v-model="note.potential" type="text" placeholder="R$ 00,00" name="email">
+            <input v-model="note.potential" type="text" placeholder="R$ 00,00" @input="handleInput">
 
             <p>Categorização</p>
             <div class="selectInput">
@@ -61,6 +61,23 @@ export default {
   methods: {
     onSaveNote() {
       saveNote(this);
+    },
+
+    handleInput(event) {
+      // Remova todos os caracteres que não são números
+      let value = event.target.value.replace(/\D/g, '');
+
+      // Remova zeros à esquerda
+      value = value.replace(/^0+/, '');
+
+      // Adicione zeros à esquerda, se necessário
+      value = value.padStart(3, '0');
+
+      // Adicione uma vírgula para representar os centavos
+      value = value.slice(0, -2) + ',' + value.slice(-2);
+
+      // Atualize o valor no modelo
+      this.note.potential = `R$ ${value}`;
     },
 
     resetForm() {
