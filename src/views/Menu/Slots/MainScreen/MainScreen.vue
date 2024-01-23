@@ -22,7 +22,7 @@
 
 <script>
 import MenuView from "../../MenuView.vue";
-import Dexie from 'dexie';
+import { checkAndRedirect } from "./Js/dinamicRoutesMain";
 
 export default {
   name: "MainScreen",
@@ -34,40 +34,8 @@ export default {
       redirectionDone: false,
     };
   },
-  methods: {
-    async goToNotes() {
-      try {
-        // Verificar se o redirecionamento já foi feito
-        if (this.redirectionDone) {
-          return;
-        }
-
-        const db = new Dexie('LocalNotes');
-        db.version(1).stores({
-          notes: '++id, text, potential, category, reminder, timestamp',
-        });
-
-        // Buscar todas as notas no IndexDB
-        const allNotes = await db.notes.toArray();
-
-        // Redirecionar com base na quantidade de notas
-        if (allNotes.length > 1) {
-          this.$router.push('/notes');
-          this.redirectionDone = false;
-        } else {
-          this.$router.push('/');
-        }
-
-        // Marcar que o redirecionamento foi feito
-        this.redirectionDone = true;
-      } catch (error) {
-        console.error('Erro ao carregar e redirecionar:', error);
-      }
-    },
-  },
   mounted() {
-    // Executar a função goToNotes quando o componente é montado
-    this.goToNotes();
+    checkAndRedirect();
   },
 };
 </script>

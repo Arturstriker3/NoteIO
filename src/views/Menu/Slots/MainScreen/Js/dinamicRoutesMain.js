@@ -1,35 +1,21 @@
-
-import loadNotesFromIndexDB from '@/views/Menu/Slots/NoteScreen/Js/noteLoad';
-
-// Função para redirecionar com base na quantidade de notas
-function redirectBasedOnNoteCount(notesCount) {
-  if (notesCount < 1) {
-    // Redirecionar para uma rota se não houver notas
-    window.location.href = '/';
-  } else {
-    // Redirecionar para outra rota se houver notas
-    window.location.href = '/notes';
-  }
-}
+import Dexie from 'dexie';
 
 // Função principal que carrega as notas e faz o redirecionamento
-async function checkAndRedirect() {
+export async function checkAndRedirect() {
   try {
-    // Carregar notas do IndexDB
-    const componentInstance = {};
-    await loadNotesFromIndexDB(componentInstance);
+    const db = new Dexie('LocalNotes');
+    db.version(1).stores({
+      notes: '++id, text, potential, category, reminder, timestamp',
+    });
 
-    // Verificar a quantidade de notas
-    const notesCount = Object.keys(componentInstance.notes).length;
+    // Buscar todas as notas no IndexDB
+    const allNotes = await db.notes.toArray();
 
-    // Redirecionar com base na quantidade de notas
-    redirectBasedOnNoteCount(notesCount);
+    // Se houver pelo menos uma nota, redirecionar para /notes
+    if (allNotes.length > 0) {
+      window.location.href = '/notes';
+    }
   } catch (error) {
     console.error('Erro ao verificar e redirecionar com base nas notas:', error);
   }
 }
-
-// // Chamar a função principal
-// checkAndRedirect();
-
-export default checkAndRedirect;
