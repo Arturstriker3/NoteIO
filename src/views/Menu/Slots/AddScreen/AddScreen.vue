@@ -20,7 +20,7 @@
             </div>
 
             <p>Lembrete</p>
-            <input v-model="note.reminder" id="date" type="date"/>
+            <input v-model="note.reminder" id="date" type="date" @input="updateReminder" />
           </div>
 
           <div class="footBtn">
@@ -41,6 +41,11 @@ import MenuView from "../../MenuView.vue";
 
 import initDatabase from "./Js/initDatabase.js";
 import { saveNote } from "./Js/noteSave"
+import handleNumberInput from './Js/inputNumber';
+import handleDateInput from './Js/handleDateInput';
+
+
+
 export default {
   name: "AddScreen",
   data() {
@@ -64,24 +69,11 @@ export default {
     },
 
     handleInput(event) {
-      // Remova todos os caracteres que não são números
-      let value = event.target.value.replace(/\D/g, '');
+      this.note.potential = handleNumberInput(event);
+    },
 
-      // Remova zeros à esquerda
-      value = value.replace(/^0+/, '');
-
-      // Adicione zeros à esquerda, se necessário
-      value = value.padStart(3, '0');
-
-      // Adicione uma vírgula para representar os centavos
-      value = value.slice(0, -2) + ',' + value.slice(-2);
-
-      // Adicione pontos como separadores de milhares
-      const parts = value.split(',');
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-      // Atualize o valor no modelo
-      this.note.potential = `R$ ${parts.join(',')}`;
+    updateReminder() {
+      handleDateInput(this.note);
     },
 
     resetForm() {
