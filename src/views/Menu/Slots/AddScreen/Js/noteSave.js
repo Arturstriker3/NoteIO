@@ -34,8 +34,8 @@ const saveNoteToIndexDB = async (db, note) => {
   }
 };
 
-// Função que salva a nota após gerar um ID único
-const saveNote = async (vm) => {
+// Exportar a função saveNote como padrão
+export default async (vm) => {
   try {
     const db = new Dexie('LocalNotes');
 
@@ -57,5 +57,3 @@ const saveNote = async (vm) => {
     console.error('Erro ao salvar a nota:', error);
   }
 };
-
-export { saveNote, generateUniqueId, saveNoteToIndexDB };

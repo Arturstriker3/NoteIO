@@ -40,7 +40,7 @@
 import MenuView from "../../MenuView.vue";
 
 import initDatabase from "./Js/initDatabase.js";
-import { saveNote } from "./Js/noteSave"
+import saveNote from "./Js/noteSave";
 import handleNumberInput from './Js/inputNumber';
 import handleDateInput from './Js/handleDateInput';
 import checkAndRedirect from './Js/dinamicRoutes';
