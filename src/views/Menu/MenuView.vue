@@ -35,7 +35,9 @@
                 />
                 {{ persistStore.persistData }}
                 
+                
                 <div v-if="persistStore.persistData">
+                  {{ persistStore.actualToken }}
                   <label for="tokenInput">Digite o Token:</label>
                   <input type="text" id="tokenInput" v-model="token" />
                   <button @click="retrieveNotes">Recuperar Notas</button>
@@ -63,6 +65,7 @@
 <script>
 import { usePersistStore } from '@/stores/persist';
 import { retrieveNotes, deleteIndexDB, addNotesToIndexDB } from './Js/importData';
+import axios from 'axios';
 
 export default {
   name: 'MenuView',
@@ -80,13 +83,32 @@ export default {
     closeModal() {
       this.showModal = false;
     },
-    handleConditionalButtonClick() {
-      console.log('Botão condicional clicado!');
+
+    async handleConditionalButtonClick() {
+      try {
+        // Faça uma requisição para a rota do backend que gera um novo token
+        const response = await axios.post('http://localhost:3000/api/generate-token');
+        const newToken = response.data.token;
+
+        // Utilize diretamente a propriedade computada persistStore para obter o store
+        const persistStore = this.persistStore;
+        
+        // Atualize o token no estado global (pinia)
+        persistStore.setActualToken(newToken);
+
+        console.log('Novo token gerado:', newToken);
+      } catch (error) {
+        console.error('Erro ao gerar token:', error);
+      }
     },
+
     async retrieveNotes() {
       try {
         // Utilize diretamente o método retrieveNotes do módulo api.js
         this.notes = await retrieveNotes(this.token);
+
+        // Atualize o actualToken com o token fornecido
+        usePersistStore().updateActualToken(this.token);
         
         // Utilize diretamente os métodos deleteIndexDB e addNotesToIndexDB do módulo api.js
         await deleteIndexDB();
