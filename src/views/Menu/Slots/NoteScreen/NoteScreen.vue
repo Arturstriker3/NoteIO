@@ -125,6 +125,7 @@ import { loadNotesFromIndexDB } from './Js/noteLoad';
 import { deleteNoteHelper, handleDeleteHelper } from './Js/noteDelete';
 import { formattedCreationDate, formattedReminderDate } from './Js/noteDates';
 import { showNoteContentFunction } from './Js/noteShow';
+import checkAndRedirect from '@/views/Menu/Slots/AddScreen/Js/dinamicRoutes';
 
 export default {
   name: "NoteScreen",
@@ -172,6 +173,7 @@ export default {
 
     async handleDelete() {
       await handleDeleteHelper(this, this.clearActiveNote);
+      checkAndRedirect();
     },
   },
 
