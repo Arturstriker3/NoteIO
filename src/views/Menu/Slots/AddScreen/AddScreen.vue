@@ -24,7 +24,7 @@
           </div>
 
           <div class="footBtn">
-            <button id="btnTrash" @click="deleteNote"><i class="fa-regular fa-trash-can"></i></button>
+            <button id="btnTrash" @click.prevent="closeAdd"><i class="fa-regular fa-trash-can"></i></button>
             <button id="btnSave" type="submit">Salvar</button>
           </div>
         </form>
@@ -43,8 +43,7 @@ import initDatabase from "./Js/initDatabase.js";
 import { saveNote } from "./Js/noteSave"
 import handleNumberInput from './Js/inputNumber';
 import handleDateInput from './Js/handleDateInput';
-
-
+import checkAndRedirect from './Js/dinamicRoutes';
 
 export default {
   name: "AddScreen",
@@ -52,9 +51,9 @@ export default {
     return {
       note: {
         id: null,
-        text: "",
-        potential: "",
-        category: null,
+        text: "Exp.: Ao ligar falar com Luiza",
+        potential: "00,00",
+        category: "Tranquilo",
         reminder: "",
         timestamp: null
       }
@@ -76,12 +75,17 @@ export default {
       handleDateInput(this.note);
     },
 
+    closeAdd() {
+      // Redirecionar sem verificar a nota
+      checkAndRedirect();
+    },
+
     resetForm() {
       this.note = {
         id: null,
-        text: "",
-        potential: "",
-        category: null,
+        text: "Exp.: Ao ligar falar com Luiza",
+        potential: "00,00",
+        category: "Tranquilo",
         reminder: "",
         timestamp: null
       };

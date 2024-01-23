@@ -17,7 +17,11 @@ export const formattedReminderDate = (activeNote) => {
   if (activeNote && activeNote.reminder) {
     const timestamp = activeNote.reminder;
     const date = new Date(timestamp);
-    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+    const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+    const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+
+    const formattedDate = `${day}/${month}/${date.getFullYear()}`;
     return formattedDate;
   }
   return null;
