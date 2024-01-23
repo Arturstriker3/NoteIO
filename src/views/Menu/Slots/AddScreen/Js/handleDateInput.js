@@ -1,6 +1,5 @@
-// handleDateInput.js
 
-export default function (note) {
+export default (note) => {
   const currentDate = new Date();
   const enteredDate = new Date(note.reminder);
 
