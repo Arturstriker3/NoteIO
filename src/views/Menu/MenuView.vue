@@ -61,10 +61,8 @@
 
 
 <script>
-
 import { usePersistStore } from '@/stores/persist';
-import Dexie from 'dexie';
-import axios from 'axios'; // Importe o Axios para fazer requisições HTTP
+import { retrieveNotes, deleteIndexDB, addNotesToIndexDB } from './Js/importData';
 
 export default {
   name: 'MenuView',
@@ -87,36 +85,18 @@ export default {
     },
     async retrieveNotes() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/annotations?token=${this.token}`);
-        this.notes = response.data;
-
-        await this.deleteIndexDB();
-        await this.addNotesToIndexDB(this.notes);
-
+        // Utilize diretamente o método retrieveNotes do módulo api.js
+        this.notes = await retrieveNotes(this.token);
+        
+        // Utilize diretamente os métodos deleteIndexDB e addNotesToIndexDB do módulo api.js
+        await deleteIndexDB();
+        await addNotesToIndexDB(this.notes);
+        
         console.log('Notas recuperadas:', this.notes);
       } catch (error) {
         console.error('Erro ao recuperar notas:', error);
       }
     },
-    async deleteIndexDB() {
-      const db = new Dexie('LocalNotes');
-      await db.delete();
-      console.log('IndexDB apagado');
-    },
-    async addNotesToIndexDB(notes) {
-      const db = new Dexie('LocalNotes');
-      db.version(1).stores({
-        notes: '++id, category, potential, reminder, text, timestamp',
-      });
-
-      // Simplificar as notas antes de adicioná-las ao IndexedDB
-      const simplifiedNotes = notes.map(({ id, category, potential, reminder, text, timestamp }) => ({
-        id, category, potential, reminder, text, timestamp
-      }));
-
-      await db.notes.bulkAdd(simplifiedNotes);
-      console.log('Notas adicionadas ao IndexDB');
-    }
   },
   computed: {
     persistStore() {
