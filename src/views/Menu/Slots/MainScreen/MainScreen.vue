@@ -22,7 +22,7 @@
 
 <script>
 import MenuView from "../../MenuView.vue";
-import { checkAndRedirect } from "./Js/dinamicRoutesMain";
+import checkAndRedirect from "./Js/dinamicRoutesMain";
 
 export default {
   name: "MainScreen",

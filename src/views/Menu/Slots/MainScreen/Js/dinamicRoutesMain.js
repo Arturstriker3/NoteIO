@@ -1,7 +1,7 @@
 import Dexie from 'dexie';
 
-// Função principal que carrega as notas e faz o redirecionamento
-export async function checkAndRedirect() {
+// Transformando a função principal em uma função anônima
+const checkAndRedirect = async () => {
   try {
     const db = new Dexie('LocalNotes');
     db.version(1).stores({
@@ -18,4 +18,6 @@ export async function checkAndRedirect() {
   } catch (error) {
     console.error('Erro ao verificar e redirecionar com base nas notas:', error);
   }
-}
+};
+
+export default checkAndRedirect;
