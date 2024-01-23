@@ -44,6 +44,7 @@ import { saveNote } from "./Js/noteSave"
 import handleNumberInput from './Js/inputNumber';
 import handleDateInput from './Js/handleDateInput';
 import checkAndRedirect from './Js/dinamicRoutes';
+import router from '@/router/index'; // Importe o objeto router do Vue Router
 
 export default {
   name: "AddScreen",
@@ -51,7 +52,7 @@ export default {
     return {
       note: {
         id: null,
-        text: "Exp.: Ao ligar falar com Luiza",
+        text: "",
         potential: "00,00",
         category: "Tranquilo",
         reminder: "",
@@ -63,8 +64,9 @@ export default {
     initDatabase();
   },
   methods: {
-    onSaveNote() {
-      saveNote(this);
+    async onSaveNote() {
+      await saveNote(this);
+      router.push('/notes');
     },
 
     handleInput(event) {
@@ -83,7 +85,7 @@ export default {
     resetForm() {
       this.note = {
         id: null,
-        text: "Exp.: Ao ligar falar com Luiza",
+        text: "",
         potential: "00,00",
         category: "Tranquilo",
         reminder: "",
