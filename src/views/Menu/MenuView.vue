@@ -54,7 +54,7 @@
                 Gerar Token
               </button>
 
-              <button @click="sendIndexedDBDataToAPI">
+              <button v-if="persistStore.persistData" @click="sendIndexedDBDataToAPI">
                 Guardar Dados
               </button>
             </div>
