@@ -84,6 +84,35 @@ main {
           margin: 20px 0;
           font-family: 'Raleway', sans-serif;
           font-size: 15px;
+
+          .persistData {
+            
+            button {
+                float: right;
+                margin-right: 5px;
+                padding: 10px;
+                border-radius: 15px;
+                transition: color 0.5s ease;
+                border: 1px solid $colorBlack;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .persistArea {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .bringArea {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+          }
       }
 
       .modal-footer {
@@ -95,6 +124,11 @@ main {
               border-radius: 15px;
               transition: color 0.5s ease;
               border: 1px solid $colorBlack;
+
+              &:hover{
+                cursor: pointer;
+                color: rgba($colorBlack, 0.5);
+            }
           }
 
           #modal-delete-btn {

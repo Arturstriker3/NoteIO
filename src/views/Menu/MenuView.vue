@@ -26,15 +26,17 @@
             </div>
             <div class="modal-line"></div>
             <div class="modal-body">
-              <div>
-                <button @click="togglePersistData">Persistir meus dados</button>
-                <span>{{ persistStore.persistData ? 'Ativado' : 'Desativado' }}</span>
-                <!-- {{ persistStore.persistData }} -->
-                
-                <div>
+              <div class="persistData">
+                <div class="persistArea">
+                  <button @click="togglePersistData">Persistir meus dados</button>
+                  <span>{{ persistStore.persistData ? 'Ativado' : 'Desativado' }}</span>
+                  <!-- {{ persistStore.persistData }} -->
+                </div>
+
+                <div class="bringArea">
                   <label for="tokenInput">Digite o Token:</label>
                   <input type="text" id="tokenInput" v-model="token" />
-                  <button @click="retrieveNotes">Recuperar Notas</button>
+                  <button @click="retrieveNotes">Recuperar</button>
                 </div>
 
                 <div>
@@ -49,11 +51,11 @@
               </button>
 
               <!-- Botão condicional -->
-              <button v-if="persistStore.persistData" @click="handleConditionalButtonClick">
+              <button class="modal-default-button" v-if="persistStore.persistData" @click="handleConditionalButtonClick">
                 Gerar Token
               </button>
 
-              <button v-if="persistStore.persistData" @click="sendIndexedDBDataToAPI">
+              <button class="modal-default-button" v-if="persistStore.persistData" @click="sendIndexedDBDataToAPI">
                 Guardar Dados
               </button>
             </div>
