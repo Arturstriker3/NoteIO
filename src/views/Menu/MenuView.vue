@@ -27,13 +27,9 @@
             <div class="modal-line"></div>
             <div class="modal-body">
               <div>
-                <label for="persistCheckbox">Persistir meus dados:</label>
-                <input
-                  type="checkbox"
-                  id="persistCheckbox"
-                  v-model="persistStore.persistData"
-                />
-                {{ persistStore.persistData }}
+                <button @click="togglePersistData">Persistir meus dados</button>
+                <span>{{ persistStore.persistData ? 'Ativado' : 'Desativado' }}</span>
+                <!-- {{ persistStore.persistData }} -->
                 
                 
                 <div v-if="persistStore.persistData">
@@ -87,6 +83,11 @@ export default {
     },
     closeModal() {
       this.showModal = false;
+    },
+
+    togglePersistData() {
+      const persistStore = this.persistStore;
+      persistStore.setPersistData(!persistStore.persistData);
     },
 
     async handleConditionalButtonClick() {
