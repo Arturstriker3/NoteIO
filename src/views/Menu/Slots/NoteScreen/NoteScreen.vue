@@ -105,7 +105,7 @@
           <div v-if="activeNote === null" class="restContent">
             <i class="fa-solid fa-paperclip"></i>
             <div class="textCenter">
-              <h3>Anotações</h3>
+              <h3>Minhas Notas</h3>
               <p>By Speedio</p>
             </div>
           </div>
