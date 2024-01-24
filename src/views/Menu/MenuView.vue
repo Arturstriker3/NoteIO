@@ -31,12 +31,15 @@
                 <span>{{ persistStore.persistData ? 'Ativado' : 'Desativado' }}</span>
                 <!-- {{ persistStore.persistData }} -->
                 
-                
-                <div v-if="persistStore.persistData">
-                  {{ persistStore.actualToken }}
+                <div>
                   <label for="tokenInput">Digite o Token:</label>
                   <input type="text" id="tokenInput" v-model="token" />
                   <button @click="retrieveNotes">Recuperar Notas</button>
+                </div>
+
+                <div>
+                  <span>Token atual:</span>
+                  {{ persistStore.actualToken }}
                 </div>
               </div>
             </div>
