@@ -53,6 +53,10 @@
               <button v-if="persistStore.persistData" @click="handleConditionalButtonClick">
                 Gerar Token
               </button>
+
+              <button @click="sendIndexedDBDataToAPI">
+                Guardar Dados
+              </button>
             </div>
           </div>
         </div>
@@ -66,6 +70,7 @@
 import { usePersistStore } from '@/stores/persist';
 import { retrieveNotes, deleteIndexDB, addNotesToIndexDB } from './Js/importData';
 import axios from 'axios';
+import Dexie from 'dexie';
 
 export default {
   name: 'MenuView',
@@ -108,7 +113,7 @@ export default {
         this.notes = await retrieveNotes(this.token);
 
         // Atualize o actualToken com o token fornecido
-        usePersistStore().updateActualToken(this.token);
+        usePersistStore().setActualToken(this.token);
         
         // Utilize diretamente os métodos deleteIndexDB e addNotesToIndexDB do módulo api.js
         await deleteIndexDB();
@@ -117,6 +122,36 @@ export default {
         console.log('Notas recuperadas:', this.notes);
       } catch (error) {
         console.error('Erro ao recuperar notas:', error);
+      }
+    },
+
+    async sendIndexedDBDataToAPI() {
+      try {
+        // Utilize diretamente a propriedade computada persistStore para obter o store
+        const persistStore = this.persistStore;
+
+        // Configure o banco de dados IndexedDB usando Dexie
+        const db = new Dexie('LocalNotes');
+        db.version(1).stores({
+          notes: '++id, text, potential, category, reminder, timestamp',
+        });
+
+        // Busque todos os dados do IndexedDB
+        const allNotes = await db.notes.toArray();
+
+        // Atualize a URL para a rota PATCH
+        const apiUrl = `http://localhost:3000/api/send-notes/${persistStore.actualToken}`;
+
+        // Utilize o método PATCH em vez de POST
+        const response = await axios.patch(apiUrl, { notes: allNotes });
+
+        if (response.status >= 200 && response.status < 300) {
+          console.log('Dados enviados para o banco de dados com sucesso:', response.data);
+        } else {
+          console.error('Erro ao enviar dados para o banco de dados. Status:', response.status);
+        }
+      } catch (error) {
+        console.error('Erro ao enviar dados para o banco de dados:', error);
       }
     },
   },
